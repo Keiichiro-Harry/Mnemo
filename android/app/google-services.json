@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "401484168460",
+    "project_id": "mnemo-fe6cf",
+    "storage_bucket": "mnemo-fe6cf.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:401484168460:android:d92be02ffc81a6d9729d29",
+        "android_client_info": {
+          "package_name": "com.example.mnemo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "401484168460-67p5v9ovdsmh9usq83v77ksfisbmt847.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCq3vId_l5rQlyA3gKpoOlxx6c92djLdvA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "401484168460-67p5v9ovdsmh9usq83v77ksfisbmt847.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "401484168460-eqvmsmq4pva3dcd5uarcmc2ahfi7a0d2.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.mnemo.RunnerTests"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
