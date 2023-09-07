@@ -198,27 +198,28 @@ class _AddBookCardsPageState extends State<AddBookCardsPage> {
                 child: ElevatedButton(
                   child: Text('カードを追加'),
                   onPressed: () async {
-                    final disallowedChars = [
-                      '<',
-                      '>',
-                      '&',
-                      '"',
-                      "'",
-                      '\\',
-                      '='
-                    ];
-                    commentText
-                        .trim()
-                        .replaceAll(RegExp(disallowedChars.join('|')), '');
-                    questionText
-                        .trim()
-                        .replaceAll(RegExp(disallowedChars.join('|')), '');
-                    answerText
-                        .trim()
-                        .replaceAll(RegExp(disallowedChars.join('|')), '');
-                    newTagText
-                        .trim()
-                        .replaceAll(RegExp(disallowedChars.join('|')), '');
+                    // 攻撃対策いらないかも?
+                    // final disallowedChars = [
+                    //   '<',
+                    //   '>',
+                    //   '&',
+                    //   '"',
+                    //   "'",
+                    //   '\\',
+                    //   '='
+                    // ];
+                    // commentText
+                        // .trim();
+                        // .replaceAll(RegExp(disallowedChars.join('|')), '');
+                    // questionText
+                    //     .trim()
+                    //     .replaceAll(RegExp(disallowedChars.join('|')), '');
+                    // answerText
+                    //     .trim()
+                    //     .replaceAll(RegExp(disallowedChars.join('|')), '');
+                    // newTagText
+                    //     .trim()
+                    //     .replaceAll(RegExp(disallowedChars.join('|')), '');
                     bool inParentheses = false;
                     bool inBrackets = false;
                     List<String> splittedAnswer = answerText.split('');
@@ -284,13 +285,13 @@ class _AddBookCardsPageState extends State<AddBookCardsPage> {
                           // 'answer': answerText,
                           // 'email': email,
                           'number': number,
-                          'comment': commentText,
-                          'tag': newTagText != "" ? newTagText : tagText,
+                          'comment': commentText.trim(),
+                          'tag': newTagText.trim() != "" ? newTagText.trim() : tagText,
                           'date': date,
                           'isArchived': false,
                           'isChecked': false,
-                          'question': questionText,
-                          'answer': answerText,
+                          'question': questionText.trim(),
+                          'answer': answerText.trim(),
                           'stage': 1,
                           'creatorID': widget.user.uid
                         });
@@ -312,11 +313,11 @@ class _AddBookCardsPageState extends State<AddBookCardsPage> {
                             // 'question': questionText,
                             // 'answer': answerText,
                             'number': number,
-                            'tag': newTagText != "" ? newTagText : tagText,
+                            'tag': newTagText.trim() != "" ? newTagText.trim() : tagText,
                             'date': date,
-                            'question': questionText,
-                            'answer': answerText,
-                            'comment': commentText,
+                            'question': questionText.trim(),
+                            'answer': answerText.trim(),
+                            'comment': commentText.trim(),
                             'creatorID': widget.user.uid
                           });
                           final DocumentReference documentReference =

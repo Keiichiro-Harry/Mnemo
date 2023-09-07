@@ -160,9 +160,9 @@ class _AddBookPageState extends State<AddBookPage> {
                       // 'answer': answerText,
                       'email': email,
                       'creator' : _accountName,
-                      'comment': commentText,
+                      'comment': commentText.trim(),
                       'date': date,
-                      'name': nameText,
+                      'name': nameText.trim(),
                       'creatorID': widget.currentUser.uid,
                       'next_num':1
                     });
@@ -177,12 +177,12 @@ class _AddBookPageState extends State<AddBookPage> {
                       // 'answer': answerText,
                       'email': email,
                       'creator' : _accountName,
-                      'comment': commentText,
-                      'tag': tagText,
+                      'comment': commentText.trim(),
+                      'tag': tagText.trim(),
                       'date': date,
                       'isLatest': true,
                       'isChecked': false,
-                      'name': nameText,
+                      'name': nameText.trim(),
                       'isPublic': isPublic,
                       'publicID' : (isPublic == true) ? newBookRef.id : null,
                       'next_num' : 1

@@ -161,11 +161,11 @@ class _AddDailyMemoryPageState extends State<AddDailyMemoryPage> {
                       'next_num':1,
                       'email': email,
                       'creator' : _accountName,
-                      'comment': commentText,
-                      'tag': tagText,
+                      'comment': commentText.trim(),
+                      'tag': tagText.trim(),
                       'date': date,
                       'isChecked': false,
-                      'name': nameTextController.text,
+                      'name': nameTextController.text.trim(),
                     });
                     setState(() {});
                     // 1つ前の画面に戻る

@@ -84,6 +84,10 @@ class _MemoriaGameState extends State<MemoriaGame> {
           splittedAnswer[quizNumber][showedLength] == '　' ||
           splittedAnswer[quizNumber][showedLength] == '/' ||
           splittedAnswer[quizNumber][showedLength] == '・' ||
+          splittedAnswer[quizNumber][showedLength] == ',' ||
+          splittedAnswer[quizNumber][showedLength] == '.' ||
+          splittedAnswer[quizNumber][showedLength] == ':' ||
+          splittedAnswer[quizNumber][showedLength] == '。' ||
           splittedAnswer[quizNumber][showedLength] == '、') {
         setState(() {
           typedLength++;

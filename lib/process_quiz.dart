@@ -94,9 +94,9 @@ class Quiz {
     'ゃ',
     'ゅ',
     'ょ',
-    '、',
-    '。'
-  ]; //82こ
+  //  '、',
+  //  '。'
+  ]; //80こ
   List<String> katakana = [
     'ア',
     'イ',
@@ -206,9 +206,9 @@ class Quiz {
     'x',
     'y',
     'z',
-    ',',
-    '.'
-  ]; //28こ
+    //',',
+    //'.'
+  ]; //26こ
   List<String> alphabetCapital = [
     'A',
     'B',
@@ -366,16 +366,16 @@ class Quiz {
             splittedAnswer[a][b] == 'っ' ||
             splittedAnswer[a][b] == 'ゃ' ||
             splittedAnswer[a][b] == 'ゅ' ||
-            splittedAnswer[a][b] == 'ょ' ||
-            splittedAnswer[a][b] == '、' ||
-            splittedAnswer[a][b] == '。') {
+            splittedAnswer[a][b] == 'ょ'){
+            //splittedAnswer[a][b] == '、' ||
+            //splittedAnswer[a][b] == '。') 
           var rand = math.Random();
           // print("OKquiz3");
           hiragana.remove(splittedAnswer[a][b]);
           selectProgress1 = [];
           for (var i = 0; i < 4; i++) {
            //print("i:$i");
-            int randomNumber = rand.nextInt(81 - i);
+            int randomNumber = rand.nextInt(79 - i);
             selectProgress1.add(hiragana[randomNumber]);
             hiragana.removeAt(randomNumber);
           }
@@ -462,8 +462,8 @@ class Quiz {
             'ゃ',
             'ゅ',
             'ょ',
-            '、',
-            '。'
+            // '、',
+            // '。'
           ];
           answerIndexProgress.add(rand.nextInt(4));
           // answerIndex[a].add(rand.nextInt(4));
@@ -674,14 +674,14 @@ class Quiz {
             splittedAnswer[a][b] == 'w' ||
             splittedAnswer[a][b] == 'x' ||
             splittedAnswer[a][b] == 'y' ||
-            splittedAnswer[a][b] == 'z' ||
-            splittedAnswer[a][b] == ',' ||
-            splittedAnswer[a][b] == '.') {
+            splittedAnswer[a][b] == 'z'){
+            // splittedAnswer[a][b] == ',' ||
+            // splittedAnswer[a][b] == '.') {
           var rand = math.Random();
           alphabetSmall.remove(splittedAnswer[a][b]);
           selectProgress1 = [];
           for (var i = 0; i < 4; i++) {
-            int randomNumber = rand.nextInt(27 - i);
+            int randomNumber = rand.nextInt(25 - i);
             selectProgress1.add(alphabetSmall[randomNumber]);
             alphabetSmall.removeAt(randomNumber);
           }
@@ -713,8 +713,8 @@ class Quiz {
             'x',
             'y',
             'z',
-            ',',
-            '.'
+            // ',',
+            // '.'
           ];
           answerIndexProgress.add(rand.nextInt(4));
           // answerIndex[a].add(rand.nextInt(4));

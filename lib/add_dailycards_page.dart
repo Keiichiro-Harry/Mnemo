@@ -198,27 +198,27 @@ class _AddDailyCardsPageState extends State<AddDailyCardsPage> {
                 child: ElevatedButton(
                   child: Text('カードを追加'),
                   onPressed: () async {
-                    final disallowedChars = [
-                      '<',
-                      '>',
-                      '&',
-                      '"',
-                      "'",
-                      '\\',
-                      '='
-                    ];
-                    commentText
-                        .trim()
-                        .replaceAll(RegExp(disallowedChars.join('|')), '');
-                    questionText
-                        .trim()
-                        .replaceAll(RegExp(disallowedChars.join('|')), '');
-                    answerText
-                        .trim()
-                        .replaceAll(RegExp(disallowedChars.join('|')), '');
-                    newTagText
-                        .trim()
-                        .replaceAll(RegExp(disallowedChars.join('|')), '');
+                    // final disallowedChars = [
+                    //   '<',
+                    //   '>',
+                    //   '&',
+                    //   '"',
+                    //   "'",
+                    //   '\\',
+                    //   '='
+                    // ];
+                    // commentText
+                    //     .trim()
+                    //     .replaceAll(RegExp(disallowedChars.join('|')), '');
+                    // questionText
+                    //     .trim()
+                    //     .replaceAll(RegExp(disallowedChars.join('|')), '');
+                    // answerText
+                    //     .trim()
+                    //     .replaceAll(RegExp(disallowedChars.join('|')), '');
+                    // newTagText
+                    //     .trim()
+                    //     .replaceAll(RegExp(disallowedChars.join('|')), '');
                     bool inParentheses = false;
                     bool inBrackets = false;
                     List<String> splittedAnswer = answerText.split('');
@@ -282,13 +282,13 @@ class _AddDailyCardsPageState extends State<AddDailyCardsPage> {
                           // 'answer': answerText,
                           // 'email': email,
                           'number': number,
-                          'comment': commentText,
-                          'tag': newTagText != "" ? newTagText : tagText,
+                          'comment': commentText.trim(),
+                          'tag': newTagText.trim() != "" ? newTagText.trim() : tagText,
                           'date': date,
                           'isArchiced': false,
                           'isChecked': false,
-                          'question': questionText,
-                          'answer': answerText,
+                          'question': questionText.trim(),
+                          'answer': answerText.trim(),
                           'stage': 1,
                         });
                         number++;

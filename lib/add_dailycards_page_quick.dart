@@ -60,10 +60,9 @@ class _AddDailyCardsPageQuickState extends State<AddDailyCardsPageQuick> {
         }
       });
       quizList = await getData(originalText);
-      final disallowedChars = ['<', '>', '&', '"', "'", '\\', '='];
-      newTagText.trim().replaceAll(RegExp(disallowedChars.join('|')), '');
+      // final disallowedChars = ['<', '>', '&', '"', "'", '\\', '='];
+      // newTagText.trim().replaceAll(RegExp(disallowedChars.join('|')), '');
       // 投稿メッセージ用ドキュメント作成
-      quizList = await getData(originalText);
       for (var value in quizList) {
         await FirebaseFirestore.instance
             .collection('users')
@@ -78,13 +77,13 @@ class _AddDailyCardsPageQuickState extends State<AddDailyCardsPageQuick> {
           // 'answer': answerText,
           // 'email': email,
           'number': number,
-          'comment': value['comment'],
-          'tag': newTagText != "" ? newTagText : tagText,
+          'comment': value['comment'].trim(),
+          'tag': newTagText.trim() != "" ? newTagText.trim() : tagText,
           'date': date,
           'isArchived': false,
           'isChecked': false,
-          'question': value['question'],
-          'answer': value["answer"],
+          'question': value['question'].trim(),
+          'answer': value["answer"].trim(),
           'stage': 1,
         });
         //print(value);
@@ -141,7 +140,7 @@ class _AddDailyCardsPageQuickState extends State<AddDailyCardsPageQuick> {
               Scrollbar(
                 controller: _scrollController,
                 child: TextFormField(
-                  decoration: InputDecoration(labelText: '問題:答え:コメント'),
+                  decoration: InputDecoration(labelText: '問題;答え;コメント'),
                   // 複数行のテキスト入力
                   keyboardType: TextInputType.multiline,
                   // 最大8行
@@ -269,22 +268,22 @@ class _AddDailyCardsPageQuickState extends State<AddDailyCardsPageQuick> {
   }
 }
 
-class Quiz {
-  String question;
-  String answer;
-  String comment;
+// class Quiz {
+//   String question;
+//   String answer;
+//   String comment;
 
-  Map<String, dynamic> toMap() {
-    return {
-      'question': question,
-      'answer': answer,
-      'comment': comment,
-    };
-  }
+//   Map<String, dynamic> toMap() {
+//     return {
+//       'question': question,
+//       'answer': answer,
+//       'comment': comment,
+//     };
+//   }
 
-  Quiz(
-    this.question,
-    this.answer,
-    this.comment,
-  );
-}
+//   Quiz(
+//     this.question,
+//     this.answer,
+//     this.comment,
+//   );
+// }

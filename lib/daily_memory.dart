@@ -528,6 +528,7 @@ class __SlidableState extends State<_Slidable> {
                                                       builder: (context) {
                                                     return MemoriaGame(
                                                         widget.user,
+                                                        "daily_memory",
                                                         widget.documents[
                                                             widget.index],
                                                         _selectedTag,

@@ -306,7 +306,7 @@ builder: (context, snapshot) {
                                   title: Text(documents[index]['question']),
                                   subtitle: Text(documents[index]['comment'] +
                                       "  stage:" +
-                                      documents[index]['stage'].toString()+", number:"+(documents[index]['number']).toString()),
+                                      documents[index]['stage'].toString()+" number:"+(documents[index]['number']).toString()),
                                   // 自分の投稿メッセージの場合は削除ボタンを表示
                                   leading: documents[index]['isChecked']
                                       ? IconButton(

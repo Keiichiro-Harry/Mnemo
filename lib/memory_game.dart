@@ -19,9 +19,10 @@ class MemoriaGame extends StatefulWidget {
   final User user;
   final DocumentSnapshot<Object?> bookInfo;
   final String tag;
+  final String bookType;
   final int stage;
   final bool? shuffle;
-  MemoriaGame(this.user, this.bookInfo, this.tag, this.stage, this.shuffle);
+  MemoriaGame(this.user, this.bookType, this.bookInfo, this.tag, this.stage, this.shuffle);
   @override
   _MemoriaGameState createState() => _MemoriaGameState();
 }
@@ -92,6 +93,10 @@ class _MemoriaGameState extends State<MemoriaGame> {
           splittedAnswer[quizNumber][showedLength] == '　' ||
           splittedAnswer[quizNumber][showedLength] == '/' ||
           splittedAnswer[quizNumber][showedLength] == '・' ||
+          splittedAnswer[quizNumber][showedLength] == ',' ||
+          splittedAnswer[quizNumber][showedLength] == '.' ||
+          splittedAnswer[quizNumber][showedLength] == ':' ||
+          splittedAnswer[quizNumber][showedLength] == '。' ||
           splittedAnswer[quizNumber][showedLength] == '、') {
         setState(() {
           if (inBrackets || inParentheses) {
@@ -164,7 +169,7 @@ class _MemoriaGameState extends State<MemoriaGame> {
           //iii
           if (quizNumber == originalQuizList.length - 1) {
             //iv
-            await goToResult(context, originalQuizList, result, widget.bookInfo,
+            await goToResult(context, originalQuizList, result, widget.bookType, widget.bookInfo,
                 widget.user);
             return;
           }
@@ -210,7 +215,7 @@ class _MemoriaGameState extends State<MemoriaGame> {
           //iii
           if (quizNumber == originalQuizList.length - 1) {
             //iv
-            await goToResult(context, originalQuizList, result, widget.bookInfo,
+            await goToResult(context, originalQuizList, result, widget.bookType, widget.bookInfo,
                 widget.user);
             return;
           }
@@ -290,7 +295,7 @@ class _MemoriaGameState extends State<MemoriaGame> {
         if (quizNumber == originalQuizList.length - 1) {
           //xii
           await goToResult(
-              context, originalQuizList, result, widget.bookInfo, widget.user);
+              context, originalQuizList, result, widget.bookType, widget.bookInfo, widget.user);
           return;
         }
         setState(() {
@@ -368,11 +373,11 @@ class _MemoriaGameState extends State<MemoriaGame> {
   }
 
   Future<void> goToResult(
-      BuildContext context, quizList, result, bookInfo, user) async {
+      BuildContext context, quizList, result, bookType, bookInfo, user) async {
     Navigator.push(
         context,
         MaterialPageRoute(
-            builder: (context) => Result(result, quizList, bookInfo, user)));
+            builder: (context) => Result(result, quizList, bookType, bookInfo, user)));
   }
 
   @override
@@ -467,7 +472,7 @@ class _MemoriaGameState extends State<MemoriaGame> {
                 stream: FirebaseFirestore.instance
                     .collection('users')
                     .doc(widget.user.uid)
-                    .collection('books')
+                    .collection(widget.bookType)
                     .doc(widget.bookInfo.id)
                     .collection('content')
                     .orderBy('number')
@@ -806,10 +811,11 @@ class _MemoriaGameState extends State<MemoriaGame> {
 }
 
 class Result extends StatelessWidget {
-  Result(this.result, this.quizList, this.bookInfo, this.user, {Key? key})
+  Result(this.result, this.quizList, this.bookType, this.bookInfo, this.user, {Key? key})
       : super(key: key);
   List<bool> result;
   List<List<dynamic>> quizList;
+  final String bookType;
   final DocumentSnapshot<Object?> bookInfo;
   User user;
   late String comment;
@@ -820,7 +826,7 @@ class Result extends StatelessWidget {
       DocumentSnapshot docSnapshot = await _firestore
           .collection('users')
           .doc(user.uid)
-          .collection('books')
+          .collection(bookType)
           .doc(bookInfo.id)
           .collection('content')
           .doc(documentId)
@@ -831,7 +837,7 @@ class Result extends StatelessWidget {
           await _firestore
               .collection('users')
               .doc(user.uid)
-              .collection('books')
+              .collection(bookType)
               .doc(bookInfo.id)
               .collection('content')
               .doc(documentId)

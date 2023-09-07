@@ -28,7 +28,7 @@ Future<List<Map>> getData(String original) async {
       //ここquiz.length+1にしてたら最後改行必須みたいになる
       break;
     }
-    List<String> parts = line.split(':');
+    List<String> parts = line.split(';');
     List<String> rows = [];
     //print("here1");
 
@@ -46,10 +46,10 @@ Future<List<Map>> getData(String original) async {
     }
     //print("here2");
 
-    final disallowedChars = ['<', '>', '&', '"', "'", '\\', '='];
-    for (int i = 0; i < rows.length; i++) {
-      rows[i] = rows[i].replaceAll(RegExp(disallowedChars.join('|')), '');
-    }
+    // final disallowedChars = ['<', '>', '&', '"', "'", '\\', '='];
+    // for (int i = 0; i < rows.length; i++) {
+    //   rows[i] = rows[i].replaceAll(RegExp(disallowedChars.join('|')), '');
+    // }
     //print("here3");
     bool inParentheses = false;
     bool inBrackets = false;

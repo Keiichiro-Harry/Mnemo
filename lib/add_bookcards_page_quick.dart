@@ -62,8 +62,9 @@ class _AddBookCardsPageQuickState extends State<AddBookCardsPageQuick> {
         }
       });
       quizList = await getData(originalText);
-      final disallowedChars = ['<', '>', '&', '"', "'", '\\', '='];
-      newTagText.trim().replaceAll(RegExp(disallowedChars.join('|')), '');
+      //インジェクション攻撃対策。いらない...？
+      // final disallowedChars = ['<', '>', '&', '"', "'", '\\', '='];
+      // newTagText.trim().replaceAll(RegExp(disallowedChars.join('|')), '');
       //print("here6");
       print("Start adding");
       for (var value in quizList) {
@@ -81,13 +82,13 @@ class _AddBookCardsPageQuickState extends State<AddBookCardsPageQuick> {
           // 'answer': answerText,
           // 'email': email,
           'number': number,
-          'comment': value['comment'],
-          'tag': newTagText != "" ? newTagText : tagText,
+          'comment': value['comment'].trim(),
+          'tag': newTagText.trim() != "" ? newTagText.trim() : tagText,
           'date': date,
           'isArchived': false,
           'isChecked': false,
-          'question': value['question'],
-          'answer': value["answer"],
+          'question': value['question'].trim(),
+          'answer': value["answer"].trim(),
           'stage': 1,
           'creatorID': widget.user.uid
         });
@@ -103,11 +104,11 @@ class _AddBookCardsPageQuickState extends State<AddBookCardsPageQuick> {
             // 'question': questionText,
             // 'answer': answerText,
             'number': number,
-            'tag': newTagText != "" ? newTagText : tagText,
+            'tag': newTagText.trim() != "" ? newTagText.trim() : tagText,
             'date': date,
-            'question': value['question'],
-            'answer': value["answer"],
-            'comment': value['comment'],
+            'question': value['question'].trim(),
+            'answer': value["answer"].trim(),
+            'comment': value['comment'].trim(),
             'creatorID': widget.user.uid
           });
         }
@@ -190,7 +191,7 @@ class _AddBookCardsPageQuickState extends State<AddBookCardsPageQuick> {
               Scrollbar(
                 controller: _scrollController,
                 child: TextFormField(
-                  decoration: InputDecoration(labelText: '問題:答え:コメント'),
+                  decoration: InputDecoration(labelText: '問題;答え;コメント'),
                   // 複数行のテキスト入力
                   keyboardType: TextInputType.multiline,
                   // 表示分は最大8行
